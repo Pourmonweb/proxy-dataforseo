@@ -34,5 +34,20 @@ app.post("/keywords", async (req, res) => {
     res.json(await r.json());
   } catch (e) { res.status(500).json({ error: e.message }); }
 });
+app.post("/ai", async (req, res) => {
+  try {
+    const { body } = req;
+    const r = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": process.env.ANTHROPIC_API_KEY,
+        "anthropic-version": "2023-06-01"
+      },
+      body: JSON.stringify(body),
+    });
+    res.json(await r.json());
+  } catch (e) { res.status(500).json({ error: e.message }); }
+});
 
 app.listen(PORT, () => console.log(`Proxy actif sur ${PORT}`));
