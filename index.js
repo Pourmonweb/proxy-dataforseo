@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 3456;
 
-app.use(cors({ origin: "*" }));
+app.use(cors());
 app.use(express.json());
 
 app.post("/serp", async (req, res) => {
