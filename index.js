@@ -6,6 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 3456;
 
 app.use(cors());
+app.options("*", cors());
 app.use(express.json());
 
 app.post("/serp", async (req, res) => {
